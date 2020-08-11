@@ -730,6 +730,65 @@ var I18N = {},
                 maxY: y + height
             }
         },
+        fixPadding: function(pos) {
+            var fontPadding = {
+                'pt': {
+                    '105': {top: 12, bottom: 12},
+                    '90': {top: 11, bottom: 10},
+                    '72': {top: 9, bottom: 9},
+                    '69': {top: 9, bottom: 9},
+                    '63': {top: 9, bottom: 9},
+                    '60': {top: 8, bottom: 7},
+                    '57': {top: 7, bottom: 8},
+                    '54': {top: 7, bottom: 8},
+                    '51': {top: 8, bottom: 7},
+                    '48': {top: 8, bottom: 7},
+                    '45': {top: 6, bottom: 6},
+                    '42': {top: 6, bottom: 6},
+                    '39': {top: 5, bottom: 7},
+                    '36': {top: 6, bottom: 6},
+                    '33': {top: 6, bottom: 6},
+                    '30': {top: 6, bottom: 3}
+                },
+                'dp/sp': {
+                    '90': {top: 9, bottom: 9},
+                    '78': {top: 9, bottom: 9},
+                    '63': {top: 9, bottom: 9},
+                    '60': {top: 9, bottom: 9},
+                    '54': {top: 9, bottom: 9},
+                    '51': {top: 6, bottom: 6},
+                    '48': {top: 6, bottom: 6},
+                    '45': {top: 6, bottom: 6},
+                    '42': {top: 6, bottom: 6},
+                    '39': {top: 6, bottom: 6},
+                    '36': {top: 6, bottom: 6},
+                    '33': {top: 3, bottom: 6},
+                    '30': {top: 6, bottom: 6},
+                    '27': {top: 6, bottom: 3}
+                }
+            };
+            var paddingValue = 0;
+            var unit = this.configs.unit === 'dp/sp' ? 'dp/sp' : 'pt';
+            if (this.selectedIndex) {
+                var fromLayer = this.current.layers[this.selectedIndex];
+                if (fromLayer && fromLayer.type === 'text') {
+                    var padding = fontPadding[unit][fromLayer.fontSize];
+                    if (padding) {
+                        paddingValue += pos === 'top' ? padding.top : padding.bottom;
+                    }
+                }
+            }
+            if (this.targetIndex) {
+                var toLayer = this.current.layers[this.targetIndex];
+                if (toLayer && toLayer.type === 'text') {
+                    var padding = fontPadding[unit][toLayer.fontSize];
+                    if (padding) {
+                        paddingValue += pos === 'top' ? padding.bottom : padding.top;
+                    }
+                }
+            }
+            return paddingValue;
+        },
         distance: function(){
             if( ( this.selectedIndex && this.targetIndex && this.selectedIndex != this.targetIndex ) || ( this.selectedIndex && this.tempTargetRect ) ){
                 var selectedRect = this.getRect(this.selectedIndex),
@@ -743,7 +802,7 @@ var I18N = {},
                             x: x,
                             y: this.zoomSize(targetRect.maxY),
                             h: this.zoomSize(selectedRect.y - targetRect.maxY),
-                            distance: this.unitSize(selectedRect.y - targetRect.maxY),
+                            distance: this.unitSize(selectedRect.y - targetRect.maxY - this.fixPadding('top')),
                             percentageDistance: this.percentageSize((selectedRect.y - targetRect.maxY), this.current.height)
                         };
                     }
@@ -761,7 +820,7 @@ var I18N = {},
                             x: x,
                             y: this.zoomSize(selectedRect.maxY),
                             h: this.zoomSize(targetRect.y - selectedRect.maxY),
-                            distance: this.unitSize(targetRect.y - selectedRect.maxY),
+                            distance: this.unitSize(targetRect.y - selectedRect.maxY - this.fixPadding('bottom')),
                             percentageDistance: this.percentageSize((targetRect.y - selectedRect.maxY), this.current.height)
                         }
                     }

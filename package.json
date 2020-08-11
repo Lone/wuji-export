@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qjebbs/sketch-meaxure.git"
+    "url": "git+https://github.com/Lone/sketch-meaxure.git"
   },
   "skpm": {
     "name": "Sketch MeaXure",
@@ -34,6 +34,10 @@
     "typescript": "^3.7.4"
   },
   "author": "utom & jebbs <qjebbs@gmail.com>",
+  "contributors":[{
+      "name": "Lone",
+      "email": "lone.chain@qq.com"
+  }],
   "dependencies": {
     "@skpm/path": "^0.1.4"
   }
