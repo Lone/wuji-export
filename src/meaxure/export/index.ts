@@ -73,6 +73,7 @@ export async function exportSpecification() {
         slices: [],
         colors: getDocumentColors(document),
         languages: getLanguageObject(),
+        sizeMode: results.sizeMode,
     };
     // stopwatch.tik('load template');
 

@@ -3,7 +3,7 @@
   "icon": "icon.png",
   "commands": [
     {
-      "name": "Toolbar",
+      "name": "导出去padding",
       "identifier": "commandToolbar",
       "shortcut": "ctrl shift b",
       "handler": "commandToolbar",
@@ -99,7 +99,7 @@
       "script": "mark_bundle.js"
     },
     {
-      "name": "Home",
+      "name": "主页",
       "identifier": "linkHome",
       "handler": "linkHome",
       "script": "mark_bundle.js"
@@ -120,29 +120,8 @@
     "items": [
       "commandToolbar",
       "-",
-      "commandOverlays",
-      "commandSizes",
-      "commandSpacings",
-      "commandProperties",
-      "commandNote",
-      "commandCoordinate",
-      "-",
-      "commandExport",
-      "-",
-      "commandHidden",
-      "commandLocked",
-      "commandClear",
-      "-",
-      "commandSettings",
-      {
-        "title": "Help",
-        "items": [
-          "commandRenameOldMarkers",
-          "linkHome",
-          "linkFeedback"
-        ]
-      }
+      "linkHome"
     ],
-    "title": "Sketch MeaXure"
+    "title": "无敌弹簧转换器"
   }
 }

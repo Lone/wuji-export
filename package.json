@@ -1,7 +1,7 @@
 {
-  "name": "sketch-meaxure",
-  "description": "Make it a fun to create spec for developers and teammates",
-  "version": "3.2.9",
+  "name": "fix-padding-export",
+  "description": "导出标注去掉字padding实现品质还原提升开发效率；基于utom&jebbs开发。",
+  "version": "1.0.0",
   "engines": {
     "sketch": ">=57.0"
   },
@@ -10,11 +10,11 @@
     "url": "git+https://github.com/Lone/sketch-meaxure.git"
   },
   "skpm": {
-    "name": "Sketch MeaXure",
+    "name": "无敌弹簧转换器",
     "manifest": "src/manifest.json",
     "homepage": "https://github.com/qjebbs",
-    "appcast": "appcast.xml",
-    "main": "sketch-meaxure.sketchplugin",
+    "appcast_": "appcast.xml",
+    "main": "fix-padding-export.sketchplugin",
     "assets": [
       "resources/**/*"
     ]
@@ -33,11 +33,18 @@
     "tslint": "^5.20.1",
     "typescript": "^3.7.4"
   },
-  "author": "utom & jebbs <qjebbs@gmail.com>",
+  "author": {
+    "name": "陈国良、刘东海",
+    "email": "chenguoliang@baidu.com",
+    "url": ""
+  },
   "contributors":[{
-      "name": "Lone",
-      "email": "lone.chain@qq.com"
-  }],
+      "name": "utom & jebbs",
+      "email": "qjebbs@gmail.com"
+  },{
+    "name": "Lone",
+    "email": "lone.chain@qq.com"
+}],
   "dependencies": {
     "@skpm/path": "^0.1.4"
   }

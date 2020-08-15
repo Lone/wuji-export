@@ -97,6 +97,28 @@
     </div>
 </div>
 `;
+// 重新定义界面
+html = `
+<div class="toolbar">
+    <div class="banner"></div>
+    <div class="plugin-name">
+        <h3>无敌弹簧转换器</h3>
+        <em>V1.0</em>
+    </div>
+    <div class="intro">
+        <p>提前告知研发，导出的标注已去掉字的padding数值，让设计稿高品质还原。目前iOS导出标注精确去掉；
+            安卓机型多，按符合大部分头部品牌机型去padding，将误差降至最低，在视觉可接受范围。
+            如有问题，<a href="mailto:liudonghai01@baidu.com">请联系我们▸</a>
+    </div>
+    <div class="export">
+        <button class="command large" data-action="export">${_('Export fix-padding')}</button>
+    </div>
+    <div class="setting">
+        <button class="command option" data-action="settings">${_('Export settings')}</button>
+    </div>
+</div>
+`;
+
             $('body').html(html);
             $('input[name=byInfluence]').prop("checked", data.byInfluence);
             $('input[name=byPercentage]').prop("checked", data.byPercentage);
@@ -125,9 +147,10 @@
     </script>
     <style>
         .toolbar {
-            width: 108px;
+            width: 224px;
             padding: 8px;
-            margin: auto;
+            margin: 0 auto;
+            background: #212121;
         }
 
         label {
@@ -168,6 +191,86 @@
         .command:active {
             background-color: #4d4d4d;
         }
+
+        .banner {
+            height: 48px;
+            margin: 20px auto;
+            background: url(assets/img/tool-bg.png) center no-repeat;
+        }
+        .plugin-name {
+            position: relative;
+            text-align: center;
+        }
+        .plugin-name h3 {
+            font-size: 14px;
+            color: #ffffff;
+            display: inline-block;
+            margin: 0;
+            vertical-align: middle;
+        }
+        .plugin-name em {
+            display: inline-block;
+            font-style: normal;
+            padding: 1px 3px;
+            border-radius: 7px;
+            font-size: 6px;
+            color:rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.12);
+            vertical-align: middle;
+        }
+
+        .intro {
+            padding: 8px 28px;
+        }
+        .intro p {
+            font-size: 8px;
+            line-height: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            margin: 0;
+        }
+        .intro a:link,  .intro a:active .intro a:visited {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .intro a:hover {
+            color: #ffffff;
+        }
+
+        .export {
+            padding: 16px 8px 0;
+            text-align: center;
+        }
+
+        .export .large {
+            width: 168px;
+            height: 44px;
+            background-color: #8D81F8;
+            border-radius: 9px;
+            color: #ffffff;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .export .large:hover {
+            background-color: rgb(106, 92, 233);
+        }
+
+        .setting {
+            text-align: center;
+            padding: 10px 8px;
+        }
+        .setting .option {
+            background: url(icons/settings-normal.svg)  left center no-repeat;
+            background-size: 10px 10px;
+            padding: 2px 8px 2px 12px;
+            width: auto;
+            height: auto;
+            font-size: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            border: none;
+            margin: 0;
+        }
+
     </style>
 </head>
 

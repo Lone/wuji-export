@@ -44,6 +44,7 @@ interface SubmitData {
     exportInfluenceRect: boolean;
     order: OptionArtboardOrder;
     reverse: boolean;
+    sizeMode: number;
 }
 
 interface ExportConfig {
@@ -51,6 +52,7 @@ interface ExportConfig {
     layersCount: number;
     advancedMode: boolean;
     byInfluence: boolean;
+    sizeMode: number;
 }
 
 export function exportPanel(): Promise<ExportConfig> {
@@ -94,6 +96,7 @@ export function exportPanel(): Promise<ExportConfig> {
                 layersCount: layersCount,
                 advancedMode: rdata.exportOption,
                 byInfluence: rdata.exportInfluenceRect,
+                sizeMode: rdata.sizeMode,
             });
             panel.close();
         });

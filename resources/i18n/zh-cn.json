@@ -90,6 +90,8 @@
 	"Current of Sketch": "Sketch 的当前画板",
 	"Filter": " 过滤",
 	"Export": "导出",
+	"Export fix-padding": "导出去padding",
+	"Export settings": "导出参数设置",
 	"Position": "位置",
 	"Size": "大小",
 	"Family": "字体",

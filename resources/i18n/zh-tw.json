@@ -89,6 +89,8 @@
     "Current of Sketch": "Sketch 目前的畫布",
     "Filter": "篩選",
     "Export": "匯出",
+    "Export fix-padding": "匯出去padding",
+    "Export settings": "匯出参数設置",
     "Position": "位置",
     "Size": "尺寸",
     "Family": "字型",

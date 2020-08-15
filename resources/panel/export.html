@@ -69,7 +69,7 @@
                 if (!window.meaxure) return;
                 let data = {
                     order: $('input[name=order]:checked').val(),
-                    reverse: $('input[name=reverse]:checked').val() == '1',
+                    reverse: false,
                     exportInfluenceRect: $('input[name=export-influenceRect]:checked').length > 0,
                     exportOption: $('input[name=export-option]:checked').length > 0,
                     selection: {},
@@ -193,13 +193,13 @@
                     //export influence rect option
                     '<div class="item" style="margin-top:10px;">',
                     '<div class="reversebox">',
-                    '<div class="radiobox positive-radio" title="' + _('Positive') + '">',
-                    '<input id="positive" type="radio" name="reverse" value="0">',
-                    '<label for="positive"></label>',
+                    '<div class="radiobox positive-radio" title="设计稿尺寸为3x">',
+                    '<input id="positive" type="radio" name="reverse" value="3">',
+                    '<label for="positive">3X</label>',
                     '</div>',
-                    '<div class="radiobox reverse-radio" title="' + _('Reverse') + '">',
+                    '<div class="radiobox reverse-radio" title="设计稿尺寸为1x">',
                     '<input id="reverse" type="radio" name="reverse" value="1">',
-                    '<label for="reverse"></label>',
+                    '<label for="reverse">1X</label>',
                     '</div>',
                     '</div>',
                     '<label>',
@@ -339,7 +339,7 @@
                     sendOrderRequest();
                 });
                 $('input[name=reverse]').change(function () {
-                    sendOrderRequest();
+                    // configExportSize();
                 });
 
                 $('input[name=export-option]').change(checkedOption);
@@ -347,7 +347,8 @@
                 $('#submit').click(function () {
                     var data = {
                         order: $('input[name=order]:checked').val(),
-                        reverse: $('input[name=reverse]:checked').val() == '1',
+                        reverse: false,
+                        sizeMode: $('input[name=reverse]:checked').val(),
                         exportInfluenceRect: $('input[name=export-influenceRect]:checked').length > 0,
                         exportOption: $('input[name=export-option]:checked').length > 0,
                         selection: {},
