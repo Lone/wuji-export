@@ -127,6 +127,7 @@ export interface ExportData {
     slices: any[],
     colors: SMColorAsset[],
     languages: { [key: string]: string },
+    sizeMode: number;
 }
 
 export interface SMExportFormat {

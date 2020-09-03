@@ -36,6 +36,7 @@ function initialize() {
     let sysLanguage = NSUserDefaults.standardUserDefaults().objectForKey("AppleLanguages").objectAtIndex(0);
     currentLang = (macOSVersion >= "10.12") ? sysLanguage.split("-").slice(0, -1).join("-") : sysLanguage;
     currentLang = aliases[currentLang];
+    currentLang = 'zh-cn';
     let langFile = getResourcePath() + "/i18n/" + currentLang + ".json";
     if (!NSFileManager.defaultManager().fileExistsAtPath(langFile)) {
         return "";

@@ -733,7 +733,7 @@ var I18N = {},
         fixPadding: function(pos) {
             var fontPadding = {
                 'pt': {
-                    '105': {top: 12, bottom: 12},
+                    '105': {top: 13, bottom: 11},
                     '90': {top: 11, bottom: 10},
                     '72': {top: 9, bottom: 9},
                     '69': {top: 9, bottom: 9},
@@ -751,22 +751,44 @@ var I18N = {},
                     '30': {top: 6, bottom: 3}
                 },
                 'dp/sp': {
-                    '90': {top: 9, bottom: 9},
-                    '78': {top: 9, bottom: 9},
-                    '63': {top: 9, bottom: 9},
-                    '60': {top: 9, bottom: 9},
-                    '54': {top: 9, bottom: 9},
-                    '51': {top: 6, bottom: 6},
-                    '48': {top: 6, bottom: 6},
-                    '45': {top: 6, bottom: 6},
-                    '42': {top: 6, bottom: 6},
-                    '39': {top: 6, bottom: 6},
-                    '36': {top: 6, bottom: 6},
-                    '33': {top: 3, bottom: 6},
-                    '30': {top: 6, bottom: 6},
-                    '27': {top: 6, bottom: 3}
+                    '90': {top: 8, bottom: 8},
+                    '78': {top: 7, bottom: 7},
+                    '63': {top: 5, bottom: 5},
+                    '60': {top: 5, bottom: 6},
+                    '54': {top: 5, bottom: 4},
+                    '51': {top: 4, bottom: 5},
+                    '48': {top: 5, bottom: 5},
+                    '45': {top: 5, bottom: 4},
+                    '42': {top: 4, bottom: 3},
+                    '39': {top: 3, bottom: 4},
+                    '36': {top: 2, bottom: 3},
+                    '33': {top: 3, bottom: 2},
+                    '30': {top: 4, bottom: 3},
+                    '27': {top: 3, bottom: 2}
                 }
             };
+            // 如果是原图尺寸是1x
+            if (this.project.sizeMode === '1') {
+                var pt_1x = {}, dp_1x = {};
+                for (const k in fontPadding['pt']) {
+                    if (fontPadding['pt'].hasOwnProperty(k)) {
+                        const element = fontPadding['pt'][k];
+                        element.top = element.top / 3.0;
+                        element.bottom = element.bottom / 3.0;
+                        pt_1x[k / 3.0] = element;
+                    }
+                }
+                for (const k in fontPadding['dp/sp']) {
+                    if (fontPadding['dp/sp'].hasOwnProperty(k)) {
+                        const element = fontPadding['dp/sp'][k];
+                        element.top = element.top / 3.0;
+                        element.bottom = element.bottom / 3.0;
+                        dp_1x[k / 3.0] = element;
+                    }
+                }
+                fontPadding['pt'] = pt_1x;
+                fontPadding['dp/sp'] = dp_1x;
+            }
             var paddingValue = 0;
             var unit = this.configs.unit === 'dp/sp' ? 'dp/sp' : 'pt';
             if (this.selectedIndex) {

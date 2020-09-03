@@ -14,7 +14,7 @@ module.exports = function (config, isPluginCommand) {
     if (!isPluginCommand) return;
     let debug = !!process.env.DEBUG;
     if (!debug) {
-        let dir = 'sketch-meaxure.sketchplugin/Contents/Sketch';
+        let dir = 'fix-padding-export.sketchplugin/Contents/Sketch';
         fs.readdirSync(dir).forEach(file => {
             if (file.endsWith('.js.map')) {
                 console.log('remove js map file', file);

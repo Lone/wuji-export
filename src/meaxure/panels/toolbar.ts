@@ -43,8 +43,8 @@ export function markToolbar() {
         identifier: 'co.jebbs.sketch-meaxure.toolbar',
         url: getResourcePath() + "/panel/toolbar.html",
         acceptsFirstMouse: true,
-        width: 120,
-        height: 472,
+        width: 240,
+        height: 300,
     });
     if (!panel) return undefined;
 
