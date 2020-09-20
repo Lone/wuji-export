@@ -100,21 +100,23 @@
 // 重新定义界面
 html = `
 <div class="toolbar">
-    <div class="banner"></div>
+    <div class="banner"><i></i></div>
     <div class="plugin-name">
         <h3>无敌弹簧转换器</h3>
-        <em>V1.0</em>
+        <em>贴吧</em>
     </div>
     <div class="intro">
-        <p>与研发沟通，导出标注已去字padding值，且选相应设备查看标注，让设计稿能高品质还原。
-            iOS已基本去掉；安卓机型众多，按大部分头部品牌机型去padding，将误差降至最低为视觉可接受范围。
-            如有问题，<a href="mailto:liudonghai01@baidu.com">请联系我们▸</a>
+        <p>贴吧定制版V1.0，导出无极编码包括上下、左右间距；字号；字形；边角（规则的）；投影；颜色（同时会显示相同日间颜色的编码）
+        </p>
     </div>
     <div class="export">
         <button class="command large" data-action="export">${_('Export fix-padding')}</button>
     </div>
     <div class="setting">
         <button class="command option" data-action="settings">${_('Export settings')}</button>
+    </div>
+    <div class="tips">
+        <span>*未经公司同意不得泄露给公司外部</span>
     </div>
 </div>
 `;
@@ -146,11 +148,14 @@ html = `
         }
     </script>
     <style>
+        body {
+            background: url(assets/img/water-mark.png) #212121 center repeat;
+            background-size: 239px 74px;
+        }
         .toolbar {
             width: 224px;
             padding: 8px;
             margin: 0 auto;
-            background: #212121;
         }
 
         label {
@@ -193,10 +198,20 @@ html = `
         }
 
         .banner {
+            position: relative;
             height: 48px;
             margin: 20px auto;
             background: url(assets/img/tool-bg.png) center no-repeat;
         }
+
+        .banner i {
+            position: absolute;
+            right:10px; top: -15px;
+            width: 20px; height: 20px;
+            background: url(assets/img/tieba-icon.png) center no-repeat;
+            background-size: 20px 20px;
+        }
+
         .plugin-name {
             position: relative;
             text-align: center;
@@ -270,6 +285,13 @@ html = `
             color: rgba(255, 255, 255, 0.5);
             border: none;
             margin: 0;
+        }
+
+        .tips {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);;
+            font-size: 8px;
+            padding-top: 10px ;
         }
 
     </style>

@@ -10,11 +10,11 @@
     "url": "git+https://github.com/Lone/sketch-meaxure.git"
   },
   "skpm": {
-    "name": "无敌弹簧转换器",
+    "name": "无敌转换器(贴吧)",
     "manifest": "src/manifest.json",
     "homepage": "http://wiki.baidu.com/pages/viewpage.action?pageId=1203225850",
     "appcast_": "appcast.xml",
-    "main": "fix-padding-export.sketchplugin",
+    "main": "tieba-export.sketchplugin",
     "assets": [
       "resources/**/*"
     ]
