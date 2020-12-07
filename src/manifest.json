@@ -3,7 +3,7 @@
   "icon": "icon.png",
   "commands": [
     {
-      "name": "导出去padding",
+      "name": "导出",
       "identifier": "commandToolbar",
       "shortcut": "ctrl shift b",
       "handler": "commandToolbar",
@@ -122,6 +122,6 @@
       "-",
       "linkHome"
     ],
-    "title": "无敌转换器(贴吧)"
+    "title": "无极Sketch标注"
   }
 }

@@ -2,9 +2,9 @@
 // Use of this source code is governed by the MIT
 // license that can be found in the LICENSE file.
 
-import { ArtboardData, LayerData, SMType, LayerStates } from "../interfaces";
+import { ArtboardData, LayerData, SMType, LayerStates, BDCode } from "../interfaces";
 import { sketch } from "../../sketch";
-import { toHTMLEncode, emojiToEntities } from "../helpers/helper";
+import { toHTMLEncode, emojiToEntities, toJSString, toJSNumber } from "../helpers/helper";
 import { getTextFragment } from "./textFragment";
 import { updateMaskStackBeforeLayer, applyMasks, updateMaskStackAfterLayer } from "./mask";
 import { getLayerRadius, getBordersFromStyle, getFillsFromStyle, getShadowsFromStyle, parseColor } from "../helpers/styles";
@@ -15,6 +15,7 @@ import { getSymbol } from "./symbol";
 import { updateTintStackAfterLayer, applyTint } from "./tint";
 import { stopwatch } from ".";
 import { tempLayers } from "./tempLayers";
+import { logger, Logger } from "../common/logger";
 
 export function getLayerData(artboard: Artboard, layer: Layer, data: ArtboardData, byInfluence: boolean, symbolLayer?: Layer): Promise<boolean> {
     // stopwatch.tik('before updateMaskStackBeforeLayer');
@@ -56,6 +57,9 @@ export function getLayerData(artboard: Artboard, layer: Layer, data: ArtboardDat
         name: toHTMLEncode(emojiToEntities(layer.name)),
         rect: layerRect,
     };
+    // get baidu uikit code
+    getBDCode(layer, layerData);
+    
     // stopwatch.tik('prepare layer data');
     getLayerStyles(layer, layerType, layerData);
     // stopwatch.tik('getLayerStyles');
@@ -75,6 +79,22 @@ function onLayerEnd(layer: Layer) {
     updateMaskStackAfterLayer(layer);
     updateTintStackAfterLayer(layer);
     // stopwatch.tik('update stack');
+}
+function getBDCode(layer: Layer, layerData: LayerData) {
+    let bdCode = <BDCode>{};
+    if (layer && layer.sketchObject) {
+        let userInfo = layer.sketchObject.userInfo();
+        if (userInfo) {
+            let info = userInfo['com.baidu.navi'] || {};
+            for (let propKey of Object.keys(info)) {
+                var codeVal = toJSString(info[propKey] || '');
+                if (codeVal) {
+                    bdCode[propKey] = codeVal;
+                }
+            }
+        }
+    }
+    layerData.bdCode = bdCode;
 }
 function getSMType(layer: Layer): SMType {
     if (layer.exportFormats.length > 0) return SMType.slice;

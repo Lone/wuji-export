@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Spec Export - Sketch MeaXure</title>
+    <title>Spec Export - Wudi Export</title>
     <style type="text/css">
     /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}template,[hidden]{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:0;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,select,textarea{font:inherit;margin:0}optgroup{font-weight:bold}button,input{overflow:visible}button,select{text-transform:none}button,html [type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-cancel-button,[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
 
@@ -733,21 +733,20 @@ var I18N = {},
         
         distance: function(){
             if( ( this.selectedIndex && this.targetIndex && this.selectedIndex != this.targetIndex ) || ( this.selectedIndex && this.tempTargetRect ) ){
+                var layerData = this.current.layers[this.selectedIndex];
                 var selectedRect = this.getRect(this.selectedIndex),
                     targetRect = this.tempTargetRect || this.getRect(this.targetIndex),
                     topData, rightData, bottomData, leftData,
                     x = this.zoomSize(selectedRect.x + selectedRect.width / 2),
                     y = this.zoomSize(selectedRect.y + selectedRect.height / 2);
+                var marginType = 0;
                 if(!this.isIntersect(selectedRect, targetRect)){
                     if(selectedRect.y > targetRect.maxY){ //top
-                        var ptop = this.fixPadding('top');
-                        var code = this.bdCode('margin-verticle', selectedRect.y - targetRect.maxY, true);
                         topData = {
                             x: x,
                             y: this.zoomSize(targetRect.maxY),
                             h: this.zoomSize(selectedRect.y - targetRect.maxY),
-                            distance: this.unitSize(selectedRect.y - targetRect.maxY - ptop),
-                            code: !code ? '' : (code + (ptop > 0 ? '-' + ptop : '')),
+                            distance: this.unitSize(selectedRect.y - targetRect.maxY),
                             percentageDistance: this.percentageSize((selectedRect.y - targetRect.maxY), this.current.height)
                         };
                     }
@@ -757,19 +756,15 @@ var I18N = {},
                             y: y,
                             w: this.zoomSize(targetRect.x - selectedRect.maxX),
                             distance: this.unitSize(targetRect.x - selectedRect.maxX),
-                            code: this.bdCode('margin-horizontal', targetRect.x - selectedRect.maxX, true),
                             percentageDistance: this.percentageSize((targetRect.x - selectedRect.maxX), this.current.width)
                         }
                     }
                     if(selectedRect.maxY < targetRect.y){ //bottom
-                        var pbtm = this.fixPadding('bottom');
-                        var code = this.bdCode('margin-verticle', targetRect.y - selectedRect.maxY, true);
                         bottomData = {
                             x: x,
                             y: this.zoomSize(selectedRect.maxY),
                             h: this.zoomSize(targetRect.y - selectedRect.maxY),
-                            distance: this.unitSize(targetRect.y - selectedRect.maxY - pbtm),
-                            code: !code ? '' : (code + (pbtm > 0 ? '-' + pbtm : '')),
+                            distance: this.unitSize(targetRect.y - selectedRect.maxY),
                             percentageDistance: this.percentageSize((targetRect.y - selectedRect.maxY), this.current.height)
                         }
                     }
@@ -779,12 +774,12 @@ var I18N = {},
                             y: y,
                             w: this.zoomSize(selectedRect.x - targetRect.maxX),
                             distance: this.unitSize(selectedRect.x - targetRect.maxX),
-                            code: this.bdCode('margin-horizontal', selectedRect.x - targetRect.maxX, true),
                             percentageDistance: this.percentageSize((selectedRect.x - targetRect.maxX), this.current.width)
                         }
                     }
                 }
                 else{
+                    marginType = 1;
                     var distance = this.getDistance(selectedRect, targetRect);
                     if (distance.top != 0) { //top
                         topData = {
@@ -801,7 +796,6 @@ var I18N = {},
                             y: y,
                             w: this.zoomSize(this.positive(distance.right)),
                             distance: this.unitSize(this.positive(distance.right)),
-                            code: this.bdCode('margin-horizontal', this.positive(distance.right), true),
                             percentageDistance: this.percentageSize(this.positive(distance.right), this.current.width)
                         };
                     }
@@ -820,12 +814,12 @@ var I18N = {},
                             y: y,
                             w: this.zoomSize(this.positive(distance.left)),
                             distance: this.unitSize(this.positive(distance.left)),
-                            code: this.bdCode('margin-horizontal', this.positive(distance.left), true),
                             percentageDistance: this.percentageSize(this.positive(distance.left), this.current.width)
                         };
                     }
                 }
                 if (topData) {
+                    topData.distance = this.bdMarginCode('Top', topData.distance, marginType);
                     $('#td')
                         .css({
                             left: topData.x,
@@ -834,10 +828,11 @@ var I18N = {},
                         })
                         .show();
                     $('#td div')
-                        .attr('data-height', topData.distance + (!topData.code ? '' : (' ' + topData.code)))
+                        .attr('data-height', topData.distance)
                         .attr('percentage-height', topData.percentageDistance);
                 }
                 if (rightData) {
+                    rightData.distance = this.bdMarginCode('Right', rightData.distance, marginType);
                      $('#rd')
                         .css({
                             left: rightData.x,
@@ -850,6 +845,7 @@ var I18N = {},
                         .attr('percentage-width', rightData.percentageDistance);
                 }
                 if (bottomData) {
+                    bottomData.distance = this.bdMarginCode('Bottom', bottomData.distance, marginType);
                     $('#bd')
                         .css({
                             left: bottomData.x,
@@ -862,6 +858,7 @@ var I18N = {},
                         .attr('percentage-height', bottomData.percentageDistance);
                 }
                 if (leftData) {
+                    leftData.distance = this.bdMarginCode('Left', leftData.distance, marginType);
                      $('#ld')
                         .css({
                             left: leftData.x,
@@ -904,8 +901,9 @@ var I18N = {},
                     ].join(''): '',
                 radius = (layerData.radius)? [
                         '<div class="item" data-label="' +_('Radius') + ':">',
-                            '<label><input id="radius" type="text" value="' + this.unitSize(layerData.radius) + '" readonly="readonly"></label>',
-                            '<label>' + this.bdCode('radius', layerData.radius) + '</label>',
+                            // '<label><input id="radius" type="text" value="' + this.unitSize(layerData.radius) + '" readonly="readonly"></label>',
+                            '<label>' + this.bdCode(layerData.bdCode.cornerRadiusCode, layerData.radius) + '</label>',
+                            '<label></label>',
                         '</div>'
                     ].join(''): '',
                 styleName = (layerData.styleName)? [
@@ -920,8 +918,11 @@ var I18N = {},
                     fillsData = $.extend(true, [], layerData.fills);
                 $.each(fillsData.reverse(), function(index, fill){
                     fills.push('<div class="item items-group" data-label="' +_(fill.fillType.firstUpperCase()) + ':">');
+                    
                     if (fill.fillType.toLowerCase() == "color") {
-                        fills.push( self.colorItem(fill.color, 'fill-color') );
+                        fills.push( self.colorItem(fill.color, layerData.bdCode.fillColorCode) );
+                    } else if (layerData.bdCode.maskCode) {
+                        fills.push( self.colorItem(fill.color, layerData.bdCode.maskCode) );
                     }
                     else{
                         fills.push('<div class="gradient">');
@@ -938,20 +939,21 @@ var I18N = {},
             if(layerData.type == 'text'){
                 var fontFamily = [
                             '<div class="item" data-label="' +_('Family') + ':">',
-                                '<label><input id="font-family" type="text" value="' + layerData.fontFace + '" readonly="readonly">' + this.bdCode('font-family', layerData.fontFace) + '</label>',
+                                '<label>' + this.bdCode(layerData.bdCode.fontWeightCode, layerData.fontFace) + '</label>',
                             '</div>'
                         ].join(''),
                     textColor = [
                             '<div class="item" data-label="' +_('Color') + ':">',
                                 '<div class="color">',
-                                    self.colorItem(layerData.color, 'font-color'),
+                                    self.colorItem(layerData.color, layerData.bdCode.fontColorCode),
                                 '</div>',
                             '</div>'
                         ].join(''),
                     fontSize = (layerData.fontSize)? [
                             '<div class="item" data-label="' +_('Size') + ':">',
-                                '<label><input id="opacity" type="text" value="' + this.unitSize(layerData.fontSize, true) + '" readonly="readonly"></label>',
-                                '<label>' + this.bdCode('font-size', layerData.fontSize) + '</label>',
+                                // '<label><input id="opacity" type="text" value="' + this.unitSize(layerData.fontSize, true) + '" readonly="readonly"></label>',
+                                '<label>' + this.bdCode(layerData.bdCode.fontCode, this.unitSize(layerData.fontSize, true)) + '</label>',
+                                '<label></label>',
                             '</div>'
                         ].join(''): '',
                     spacing = [
@@ -976,12 +978,13 @@ var I18N = {},
                         '<div class="items-group">',
                             '<h4>' + _(border.position.firstUpperCase() + ' Border') + '</h4>',
                             '<div class="item" data-label="' +_('Weight') + ':">',
-                                '<label><input id="font-family" type="text" value="' + self.unitSize(border.thickness) + '" readonly="readonly"></label>',
+                                // '<label><input id="font-family" type="text" value="' + self.unitSize(border.thickness) + '" readonly="readonly"></label>',
+                                '<label>' + self.bdCode(layerData.bdCode.borderThicknessCode, self.unitSize(border.thickness)) + '</label>',
                                 '<label></label>',
                             '</div>');
                     borders.push('<div class="item" data-label="' +_(border.fillType.firstUpperCase()) + ':">');
                     if (border.fillType.toLowerCase() == "color") {
-                        borders.push(self.colorItem(border.color, 'border-color'));
+                        borders.push(self.colorItem(border.color, layerData.bdCode.borderColorCode));
                     }
                     else{
                         borders.push('<div class="colors gradient">');
@@ -1012,7 +1015,7 @@ var I18N = {},
                                 '<label data-label="' +_('Spread') + '"><input id="offset-y" type="text" value="' + self.unitSize(shadow.spread) + '" readonly="readonly"></label>',
                             '</div>',
                             '<div class="item" data-label="' + _('Color') + ':">',
-                                self.colorItem(shadow.color, 'shadow-color'),
+                                self.colorItem(shadow.color, layerData.bdCode.shadowCode),
                             '</div>',
                         '</div>'
                     );
@@ -1178,10 +1181,12 @@ var I18N = {},
         colorItem: function(color, colorType){
             var colorName = (this.project.colorNames)? this.project.colorNames[color['argb-hex']]: '';
             colorName = (colorName)? ' data-name="' + colorName + '"': '';
+            var colorCode = this.bdCode(colorType, color['color-hex']);
+            colorCode = colorCode.replace('<input', '<input data-color="' + encodeURI(JSON.stringify(color)) + '"');
             return [
                 '<div class="color"' + colorName + '>',
-                    '<label><em><i style="background-color:' + color['css-rgba'] + ';"></i></em></label><input data-color="' + encodeURI(JSON.stringify(color)) + '" type="text" value="' + color[this.configs.colorFormat] + '" readonly="readonly">',
-                    !colorType ? '' : this.bdCode(colorType, color['color-hex']),
+                    '<label><em><i style="background-color:' + color['css-rgba'] + ';"></i></em></label>',
+                    colorCode,
                 '</div>'].join('');
         },
         changeColorFormat: function(){
@@ -1580,10 +1585,51 @@ var I18N = {},
         return this;
     };
 
-
-    (function(j){var l={"font-color":{"CAM_X0101":"#FFFFFF 100%","CAM_X0102":"#FFFFFF 83%","CAM_X0103":"#FFFFFF 66%","CAM_X0104":"#FFFFFF 33%","CAM_X0105":"#272829 100%","CAM_X0106":"#3D3F40 100%","CAM_X0107":"#515354 100%","CAM_X0108":"#8E9294 100%","CAM_X0109":"#A2A6A8 100%","CAM_X0110":"#B8BCBF 100%","CAM_X0111":"#CBD1D4 100%","CAM_X0112":"#E1E7EB 100%",},"border-color":{"CAM_X0401":"#EDEFF0 00%","CAM_X0402":"#FFFFFF 100%","CAM_X0403":"#FFFFFF 8%","CAM_X0404":"#FFFFFF 16%","CAM_X0405":"#FFFFFF 25%","CAM_X0406":"#FFFFFF 33%","CAM_X0407":"#FFFFFF 42%","CAM_X0408":"#FFFFFF 50%","CAM_X0409":"#FFFFFF 66%","CAM_X0410":"#FFFFFF 83%","CAM_X0411":"#FFFFFF 92%","CAM_X0412":"#FFFFFF 100%","CAM_X0413":"#000000 8%","CAM_X0414":"#000000 16%","CAM_X0415":"#000000 25%","CAM_X0416":"#000000 33%","CAM_X0417":"#000000 42%","CAM_X0418":"#000000 50%","CAM_X0419":"#000000 66%","CAM_X0420":"#000000 83%","CAM_X0421":"#000000 92%","CAM_X0422":"#000000 100%"},"fill-color":{"CAM_X0301":"#FF392B 100%","CAM_X0302":"#00A2FF 100%","CAM_X0303":"#00A2FF 100%","CAM_X0304":"#00A2FF 100%","CAM_X0305":"#FFA32B 100%","CAM_X0306":"#2B87FF 100%","CAM_X0307":"#A32BFF 100%","CAM_X0308":"#FF2B87 100%","CAM_X0309":"#24D45C 100%","CAM_X0310":"#FF4063 100%","CAM_X0311":"#6B4A1B 100%","CAM_X0312":"#FFD82B 100%","CAM_X0313":"#FFFBEB 100%","CAM_X0314":"#FFCC40 100%","CAM_X0315":"#BFBFBF 100%","CAM_X0316":"#D4A77B 100%","CAM_X0317":"#BF0053 100%"},"shadow-color":{"CAM_X0801":"#000000 8%","CAM_X0802":"#000000 12%","CAM_X0803":"#000000 16%","CAM_X0804":"#000000 25%","CAM_X0805":"#000000 33%","CAM_X0806":"#000000 42%","CAM_X0807":"#000000 50%"},"font-size":{"T_X01":[34,88],"T_X02":[28,73],"T_X03":[22,57],"T_X04":[20,52],"T_X05":[17,44],"T_X06":[16,42],"T_X07":[15,39],"T_X08":[13,34],"T_X09":[12,31],"T_X10":[10,26]},"font-family":{"F_X01":"PingFangSC-Regular","F_X02":"PingFangSC-Medium"},"radius":{"J_X02":[0,0],"J_X03":[2,5],"J_X04":[4,10],"J_X05":[8,21],"J_X06":[12,31],"J_X07":[20,52]},"margin-verticle":{"M_H_X001":[4,10],"M_H_X002":[6,16],"M_H_X003":[8,21],"M_H_X004":[12,31],"M_H_X005":[16,42],"M_H_X006":[18,47],"M_H_X007":[20,52],"M_H_X008":[24,62],"M_H_X009":[28,73],"M_H_X010":[32,83],"M_H_X011":[36,94],"M_H_X012":[40,104],"M_H_X013":[44,114],"M_H_X014":[48,125],"M_H_X015":[52,135],"M_H_X016":[56,146],"M_H_X017":[60,156]},"margin-horizontal":{"M_W_X001":[2,5],"M_W_X002":[4,10],"M_W_X003":[6,16],"M_W_X004":[8,21],"M_W_X005":[11,29],"M_W_X006":[12,31],"M_W_X007":[13,34],"M_W_X008":[16,42],"M_W_X009":[17,44],"M_W_X010":[18,47],"M_W_X011":[19,49],"M_W_X012":[20,52],"M_W_X013":[24,62],"M_W_X014":[28,73],"M_W_X015":[32,83],"M_W_X016":[36,94],"M_W_X017":[40,104],"M_W_X018":[44,114],"M_W_X019":[48,125],"M_W_X020":[52,135],"M_W_X021":[56,146],"M_W_X022":[60,156]}};var m={'pt':{'24':{top:2,bottom:3},'27':{top:3,bottom:3},'30':{top:3,bottom:3},'33':{top:3,bottom:4},'36':{top:3,bottom:4},'39':{top:3,bottom:5},'42':{top:4,bottom:5},'45':{top:4,bottom:5},'48':{top:5,bottom:5},'51':{top:5,bottom:5},'54':{top:5,bottom:6},'57':{top:5,bottom:7},'60':{top:5,bottom:7},'63':{top:6,bottom:7},'66':{top:6,bottom:7},'69':{top:7,bottom:7},'72':{top:7,bottom:7},'75':{top:6,bottom:9},'78':{top:7,bottom:9},'81':{top:7,bottom:9},'84':{top:8,bottom:9},'87':{top:8,bottom:9},'90':{top:7,bottom:11},'93':{top:8,bottom:10},'96':{top:9,bottom:10},'99':{top:10,bottom:10},'102':{top:11,bottom:9},'105':{top:12,bottom:9}},'dp/sp':{'90':{top:8,bottom:8},'78':{top:7,bottom:7},'63':{top:5,bottom:5},'60':{top:5,bottom:6},'54':{top:5,bottom:4},'51':{top:4,bottom:5},'48':{top:5,bottom:5},'45':{top:5,bottom:4},'42':{top:4,bottom:3},'39':{top:3,bottom:4},'36':{top:2,bottom:3},'33':{top:3,bottom:2},'30':{top:4,bottom:3},'27':{top:3,bottom:2}}};j.fixPadding=function(a){var b={};if(this.project.sizeMode==='1'){var c={},dp_1x={};for(const k in m['pt']){if(m['pt'].hasOwnProperty(k)){const element=m['pt'][k];element.top=element.top/3.0;element.bottom=element.bottom/3.0;c[k/3.0]=element}}for(const k in m['dp/sp']){if(m['dp/sp'].hasOwnProperty(k)){const element=m['dp/sp'][k];element.top=element.top/3.0;element.bottom=element.bottom/3.0;dp_1x[k/3.0]=element}}b['pt']=c;b['dp/sp']=dp_1x}else{b['pt']=m['pt'];b['dp/sp']=m['dp/sp']}var d=0;var e=this.configs.unit==='dp/sp'?'dp/sp':'pt';if(this.selectedIndex){var f=this.current.layers[this.selectedIndex];if(f&&f.type==='text'){var g=b[e][f.fontSize];if(g){d+=a==='top'?g.top:g.bottom}}}if(this.targetIndex){var h=this.current.layers[this.targetIndex];if(h&&h.type==='text'){var g=b[e][h.fontSize];if(g){d+=a==='top'?g.bottom:g.top}}}return d};j.bdCode=function(a,b,c){var d='';if(l.hasOwnProperty(a)){var e=l[a];for(const key in e){if(e.hasOwnProperty(key)){const element=e[key];if($.isArray(element)){var f=this.configs.unit==='dp/sp'?1:0;var g=element[f];if(this.project.sizeMode==='3'){g*=3}e[key]=g;b=parseInt(b)}if(b===e[key]){if(c){d=key}else{var h=a+'-code';var i=key;d+='<input id="'+h+'" type="text" value="'+i+'" readonly="readonly">'}}}}}return d}})(SMApp.fn);
-   
-
+    (function (app) {
+        app.bdCode = function (confName, value, extInfo) {
+            var returnValue = null;
+            if (confName && confName.length > 0 && confName != 'null') {
+                returnValue = confName;
+            } else {
+                returnValue = value;
+            }
+            if (returnValue == confName) {
+                return '<input style="color:#EE6723;" type="text" value="' + returnValue + '" readonly="readonly"' + extInfo + '>';
+            } else {
+                return '<input type="text" value="' + value + '" readonly="readonly"' + extInfo + '>';
+            }
+        };
+        app.bdMarginCode = function(marginPos, value, marginType) {
+            var revertPos = {
+                Top: 'Bottom',
+                Left: 'Right',
+                Bottom: 'Top',
+                Right: 'Left'
+            };
+            var selectLayer = this.current.layers[this.selectedIndex];
+            var targetLayer = this.current.layers[this.targetIndex];
+            if (selectLayer && targetLayer) {
+                var targetID = selectLayer.bdCode['margin' + marginPos + 'Target'];
+                var marginCode = selectLayer.bdCode['margin' + marginPos + 'Code'];
+                if (targetID && targetID == targetLayer.objectID) {
+                    if (marginCode) {
+                        return marginCode;
+                    }
+                }
+                if (marginType != 1) {
+                    marginPos = revertPos[marginPos];
+                }
+                targetID = targetLayer.bdCode['margin' + marginPos + 'Target'];
+                marginCode = targetLayer.bdCode['margin' + marginPos + 'Code'];
+                if (targetID && targetID == selectLayer.objectID) {
+                    if (marginCode) {
+                        return marginCode;
+                    }
+                }
+            }
+            return value;
+        };
+    })(SMApp.fn);
 
     init.prototype = SMApp.fn;
     window.SMApp = SMApp;

@@ -40,7 +40,7 @@ const workers = {
 
 export function markToolbar() {
     let panel = createWebviewPanel({
-        identifier: 'co.jebbs.sketch-meaxure.toolbar',
+        identifier: 'co.jebbs.wudi-export.toolbar',
         url: getResourcePath() + "/panel/toolbar.html",
         acceptsFirstMouse: true,
         width: 240,
@@ -62,6 +62,9 @@ export function markToolbar() {
         // if update configs only
         if (!msg.action) return;
         workers[msg.action](msg.options);
+        if(msg.action == 'export') {
+            panel.close();
+        }
     });
     panel.show();
 }

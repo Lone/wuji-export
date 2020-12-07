@@ -40,7 +40,7 @@ export class Logger {
         this.log(LOGGER_LEVEL.WARN, ...msgs);
     }
     error(...msgs) {
-        sketch.UI.alert('Sketch MeaXure', msgs.join(' '));
+        sketch.UI.alert('Wuji Export', msgs.join(' '));
         this.log(LOGGER_LEVEL.ERROR, ...msgs);
     }
 }

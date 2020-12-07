@@ -1,9 +1,9 @@
-# Sketch MeaXure
+# Wudi Export
 
 > Thanks [@utom](https://github.com/utom) for his great work, `Sketch Measure` is really a life saver when I share design specifications to co-workers.
 > But it lack of maintenance in recent year, that's why I start this project.
 
-Sketch MeaXure is a re-implemention of `Sketch Measure` with TypeScript, uses Sketch JavaScript API. 
+Wudi Export is a re-implemention of `Sketch Measure` with TypeScript, uses Sketch JavaScript API. 
 
 It aims to be:
 
@@ -24,10 +24,10 @@ Improvements that users can recognize:
 
 ## Notice
 
-If you encounter problems managing (toggle hidden/locked, remove, and export) markers created by Sketch Measure, run the menu `Plugin - Sketch MeaXure - Help - Rename Old Markers`.
+If you encounter problems managing (toggle hidden/locked, remove, and export) markers created by Sketch Measure, run the menu `Plugin - Wudi Export - Help - Rename Old Markers`.
 
 ## Installation
 
-- [Download](https://github.com/qjebbs/sketch-meaxure/releases/latest/download/sketch-meaxure.sketchplugin.zip) the latest release of the plugin
+- [Download](https://github.com/qjebbs/wudi-export/releases/latest/download/wudi-export.sketchplugin.zip) the latest release of the plugin
 - Un-zip
-- Double-click on Sketch-Meaxure.sketchplugin
+- Double-click on wudi-export.sketchplugin

@@ -1,20 +1,20 @@
 {
-  "name": "fix-padding-export",
-  "description": "导出标注去掉字padding实现品质还原提升开发效率；基于Sketch MeaXure开发，原作者utom&jebbs。",
+  "name": "wuji-export",
+  "description": "设计师能够一键导出编码，高效完成编码标注",
   "version": "1.0.0",
   "engines": {
     "sketch": ">=57.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lone/sketch-meaxure.git"
+    "url": "git+https://github.com/Lone/wudi-export.git"
   },
   "skpm": {
-    "name": "无敌转换器(贴吧)",
+    "name": "无极Sketch标注",
     "manifest": "src/manifest.json",
     "homepage": "http://wiki.baidu.com/pages/viewpage.action?pageId=1203225850",
     "appcast_": "appcast.xml",
-    "main": "tieba-export.sketchplugin",
+    "main": "wuji-export.sketchplugin",
     "assets": [
       "resources/**/*"
     ]
@@ -38,13 +38,16 @@
     "email": "liudonghai01@baidu.com",
     "url": "http://wiki.baidu.com/pages/viewpage.action?pageId=1203225850"
   },
-  "contributors":[{
+  "contributors": [
+    {
       "name": "utom & jebbs",
       "email": "qjebbs@gmail.com"
-  }, {
-    "name": "Lone",
-    "email": "lone.chain@qq.com"
-}],
+    },
+    {
+      "name": "Lone",
+      "email": "lone.chain@qq.com"
+    }
+  ],
   "dependencies": {
     "@skpm/path": "^0.1.4"
   }

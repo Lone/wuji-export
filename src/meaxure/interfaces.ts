@@ -72,6 +72,32 @@ export enum SMType {
     shape = "shape",
     group = "group",
 };
+
+// 百度无极标注编码的数据结构
+// ----------- start -----------
+export interface BDCode {
+    cornerRadiusCode: string,
+    textCode: string,
+    fontCode: string,
+    fontWeightCode: string,
+    fontColorCode: string,
+    fillColorCode: string,
+    maskCode: string,
+    shadowCode: string,
+    borderThicknessCode: string,
+    borderColorCode: string,
+    marginType: string,
+    marginTopCode: string,
+    marginTopTarget: string,
+    marginRightCode: string,
+    marginRightTarget: string,
+    marginBottomCode: string,
+    marginBottomTarget: string,
+    marginLeftCode: string,
+    marginLeftTarget: string,
+};
+// ----------- end -----------
+
 export interface LayerData {
     // shared
     objectID: string,
@@ -98,6 +124,7 @@ export interface LayerData {
     exportable: SMExportable[],
     // css
     css: string[],
+    bdCode: BDCode,
 }
 export interface SMNote { rect: SMRect, note: string }
 export interface ArtboardData {

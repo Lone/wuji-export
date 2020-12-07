@@ -39,7 +39,7 @@ export function getTextFragment(artboard: Artboard, layer: Text, data: ArtboardD
         let currentLineHeight = layer.style.lineHeight || Math.max(...frags.map(f => f.defaultLineHeight));
         for (let fragment of frags) {
             fragment.style.fills.forEach(fill => {
-                // https://github.com/qjebbs/sketch-meaxure/issues/2
+                // https://github.com/qjebbs/wudi-export/issues/2
                 // https://github.com/sketch-hq/SketchAPI/issues/726
                 if (fill.pattern && fill.pattern.image === null) fill.pattern.image = undefined;
             });

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Toolbar - Sketch MeaXure</title>
+    <title>Toolbar - Wudi Export</title>
 
     <link href="assets/css/normalize.css" rel="stylesheet">
     <link href="assets/css/app.css" rel="stylesheet">
@@ -100,17 +100,16 @@
 // 重新定义界面
 html = `
 <div class="toolbar">
-    <div class="banner"><i></i></div>
+    <div class="banner"></div>
     <div class="plugin-name">
-        <h3>无敌弹簧转换器</h3>
-        <em>贴吧</em>
+        <h3>无极Sketch标注</h3>
     </div>
     <div class="intro">
-        <p>贴吧定制版V1.0，导出无极编码包括上下、左右间距；字号；字形；边角（规则的）；投影；颜色（同时会显示相同日间颜色的编码）
+        <p>设计师能够一键导出编码，高效完成编码标注，提升工作效率。包括颜色；文字；线条；边角；间距；图标；投影；蒙层等等
         </p>
     </div>
     <div class="export">
-        <button class="command large" data-action="export">${_('Export fix-padding')}</button>
+        <button class="command large" data-action="export">${_('Export')}</button>
     </div>
     <div class="setting">
         <button class="command option" data-action="settings">${_('Export settings')}</button>
@@ -202,14 +201,7 @@ html = `
             height: 48px;
             margin: 20px auto;
             background: url(assets/img/tool-bg.png) center no-repeat;
-        }
-
-        .banner i {
-            position: absolute;
-            right:10px; top: -15px;
-            width: 20px; height: 20px;
-            background: url(assets/img/tieba-icon.png) center no-repeat;
-            background-size: 20px 20px;
+            background-size: auto 48px;
         }
 
         .plugin-name {
@@ -260,7 +252,8 @@ html = `
         .export .large {
             width: 168px;
             height: 44px;
-            background-color: #8D81F8;
+            border: none;
+            background-color: #0058FF;
             border-radius: 9px;
             color: #ffffff;
             font-size: 16px;
@@ -268,7 +261,7 @@ html = `
         }
 
         .export .large:hover {
-            background-color: rgb(106, 92, 233);
+            background-color: #0058FFF0;
         }
 
         .setting {

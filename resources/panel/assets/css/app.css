@@ -99,7 +99,7 @@ button{
 
 .checkbox input[type=checkbox]:checked + label,
 .v-checkbox.v-full-checked{
-    background: #8D81F8;
+    background: #0058FF;
 }
 .checkbox.half-checked label:before,
 .v-checkbox.v-checked:before{
@@ -107,7 +107,7 @@ button{
     position: absolute;
     width: 8px;
     height: 2px;
-    background: #8D81F8;
+    background: #0058FF;
     top: 5px;
     left: 2px;
     border-radius: 1px;
@@ -622,7 +622,7 @@ button{
     color: #FFF;
     height: 44px;
     border: 0;
-    background: #8D81F8;
+    background: #0058FF;
     border-radius: 9px;
     cursor: pointer;
 }
@@ -632,10 +632,10 @@ button{
     color: rgba(255,255,255,0.30);
 }
 .footer button:hover{
-    background: rgb(106, 92, 233);
+    background: #0058FFF0;
 }
 .footer button:active{
-    background: #8D81F8;
+    background: #0058FF;
 }
 .footer button:disabled:hover{
     background: #898989;
@@ -734,7 +734,7 @@ button{
 }
 .orderbox .radiobox input[type=radio]:checked + label,
 .reversebox .radiobox input[type=radio]:checked + label {
-    background-color: #8D81F8;
+    background-color: #0058FF;
 }
 .orderbox .radiobox input[type=radio]:disabled + label,
 .reversebox .radiobox input[type=radio]:disabled + label {

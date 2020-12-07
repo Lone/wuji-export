@@ -45,7 +45,7 @@ export function commandLocked(context?) { runAndCatch(toggleLocked, context); }
 export function commandClear(context?) { runAndCatch(clearAllMarks, context); }
 export function commandExport(context?) { runAndCatch(exportSpecification, context); }
 export function commandRenameOldMarkers(context?) { runAndCatch(renameOldMarkers, context); }
-export function linkFeedback(context?) { runAndCatch(openURL, context, "https://github.com/Lone/sketch-meaxure/issues"); }
+export function linkFeedback(context?) { runAndCatch(openURL, context, "https://github.com/Lone/wudi-export/issues"); }
 export function linkHome(context?) { runAndCatch(openURL, context, "http://wiki.baidu.com/pages/viewpage.action?pageId=1203225850"); }
 
 function runAndCatch(fn: Function, context, ...args) {
