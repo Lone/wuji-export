@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>Wudi Export</title>
-    <link>https://raw.githubusercontent.com/Lone/wudi-export/master/appcast.xml</link>
+    <title>Wuji Export</title>
+    <link>https://raw.githubusercontent.com/Lone/wuji-export/master/appcast.xml</link>
     <description>Make it a fun to create spec for developers and teammates</description>
     <language>cn</language>
     <item>
-      <enclosure url="https://github.com/qjebbs/wudi-export/releases/download/v3.2.9/wudi-export.sketchplugin.zip" sparkle:version="3.2.9"/>
+      <enclosure url="https://github.com/qjebbs/wuji-export/releases/download/v3.2.9/wuji-export.sketchplugin.zip" sparkle:version="3.2.9"/>
     </item>
     <item>
       <title>Changelog</title>

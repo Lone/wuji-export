@@ -40,7 +40,7 @@ const workers = {
 
 export function markToolbar() {
     let panel = createWebviewPanel({
-        identifier: 'co.jebbs.wudi-export.toolbar',
+        identifier: 'co.jebbs.wuji-export.toolbar',
         url: getResourcePath() + "/panel/toolbar.html",
         acceptsFirstMouse: true,
         width: 240,

@@ -57,7 +57,7 @@ interface ExportConfig {
 
 export function exportPanel(): Promise<ExportConfig> {
     let panel = createWebviewPanel({
-        identifier: 'co.jebbs.wudi-export.export',
+        identifier: 'co.jebbs.wuji-export.export',
         url: getResourcePath() + "/panel/export.html",
         width: 320,
         height: 597,

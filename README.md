@@ -1,9 +1,9 @@
-# Wudi Export
+# Wuji Export
 
 > Thanks [@utom](https://github.com/utom) for his great work, `Sketch Measure` is really a life saver when I share design specifications to co-workers.
 > But it lack of maintenance in recent year, that's why I start this project.
 
-Wudi Export is a re-implemention of `Sketch Measure` with TypeScript, uses Sketch JavaScript API. 
+Wuji Export is a re-implemention of `Sketch Measure` with TypeScript, uses Sketch JavaScript API. 
 
 It aims to be:
 
@@ -24,10 +24,10 @@ Improvements that users can recognize:
 
 ## Notice
 
-If you encounter problems managing (toggle hidden/locked, remove, and export) markers created by Sketch Measure, run the menu `Plugin - Wudi Export - Help - Rename Old Markers`.
+If you encounter problems managing (toggle hidden/locked, remove, and export) markers created by Sketch Measure, run the menu `Plugin - Wuji Export - Help - Rename Old Markers`.
 
 ## Installation
 
-- [Download](https://github.com/qjebbs/wudi-export/releases/latest/download/wudi-export.sketchplugin.zip) the latest release of the plugin
+- [Download](https://github.com/qjebbs/wuji-export/releases/latest/download/wuji-export.sketchplugin.zip) the latest release of the plugin
 - Un-zip
-- Double-click on wudi-export.sketchplugin
+- Double-click on wuji-export.sketchplugin

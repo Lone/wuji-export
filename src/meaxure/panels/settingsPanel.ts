@@ -17,7 +17,7 @@ interface SettingData {
 
 export function settingsPanel() {
     let panel = createWebviewPanel({
-        identifier: 'co.jebbs.wudi-export.settings',
+        identifier: 'co.jebbs.wuji-export.settings',
         url: getResourcePath() + "/panel/settings.html",
         width: 240,
         height: 316,
