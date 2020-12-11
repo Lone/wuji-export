@@ -1,6 +1,4 @@
 # build artifacts
-*.sketchplugin
-*.zip
 
 # npm
 node_modules
