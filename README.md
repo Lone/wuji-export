@@ -1,6 +1,6 @@
 # Wuji Export
 
-> Thanks [@utom](https://github.com/utom) for his great work, `Sketch Measure` is really a life saver when I share design specifications to co-workers.
+> Thanks [@qjebbs](https://github.com/qiebbs) and [@utom](https://github.com/utom) for his great work, `Sketch Measure` is really a life saver when I share design specifications to co-workers.
 > But it lack of maintenance in recent year, that's why I start this project.
 
 Wuji Export is a re-implemention of `Sketch Measure` with TypeScript, uses Sketch JavaScript API. 
@@ -28,6 +28,6 @@ If you encounter problems managing (toggle hidden/locked, remove, and export) ma
 
 ## Installation
 
-- [Download](https://github.com/qjebbs/wuji-export/releases/latest/download/wuji-export.sketchplugin.zip) the latest release of the plugin
+- [Download](https://github.com/Lone/wuji-export/raw/master/wuji-export.sketchplugin.2.0.0.zip) the latest release of the plugin
 - Un-zip
 - Double-click on wuji-export.sketchplugin
