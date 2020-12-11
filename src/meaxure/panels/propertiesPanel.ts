@@ -10,7 +10,7 @@ import { getLanguageScript } from '../common/language';
 
 export function propertiesPanel() {
     let panel = createWebviewPanel({
-        identifier: 'co.jebbs.wudi-export.properties',
+        identifier: 'co.jebbs.wuji-export.properties',
         url: getResourcePath() + "/panel/properties.html",
         width: 280,
         height: 296,
